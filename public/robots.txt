@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://banana-navy.ai/sitemap.xml
