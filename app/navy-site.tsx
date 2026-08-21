@@ -45,11 +45,13 @@ const copy = {
 
 export default function NavySite({ lang }: { lang: Lang }) {
   const t = copy[lang];
+  const assetBase = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const asset = (path: string) => `${assetBase}${path}`;
   const [menuOpen, setMenuOpen] = useState(false);
   const [cookieVisible, setCookieVisible] = useState(true);
   return <main>
     <header className="topbar">
-      <Link href={`/${lang}`} className="brand" aria-label="Banana Navy home"><img src="/assets/banana-navy-logo.png" alt="Banana Navy"/></Link>
+      <Link href={`/${lang}`} className="brand" aria-label="Banana Navy home"><img src={asset("/assets/banana-navy-logo.png")} alt="Banana Navy"/></Link>
       <nav className={menuOpen ? "nav open" : "nav"} aria-label="Main navigation">
         <a href="#expertise">{t.nav[0]}</a><a href="#strike-it">{t.nav[1]}</a><a href="#method">{t.nav[2]}</a><a href="#team">{t.nav[3]}</a>
       </nav>
@@ -66,15 +68,15 @@ export default function NavySite({ lang }: { lang: Lang }) {
 
     <section className="custom" id="method"><div className="placeholder"><div className="wave-mini"><i/><i/><i/><i/><i/><i/><i/></div><span>{t.missing}</span><h3>{t.missingTitle}</h3><p>{t.missingText}</p><code>VISUAL 01 · 16:10 · 2400 × 1500 px</code></div><div className="custom-copy"><p className="eyebrow">{t.customKicker}</p><h2>{t.customTitle}</h2><p>{t.customText}</p><a href="mailto:marc@banana-navy.com" className="text-link">{t.cta} ↗</a></div></section>
 
-    <section className="strike" id="strike-it"><div className="strike-image"><img src="/assets/strikeit/kickoff.webp" alt="STRIKE IT 2026 kickoff at A6K"/><img className="strike-logo" src="/assets/strikeit/logo.webp" alt="STRIKE IT"/></div><div className="strike-copy"><p className="eyebrow">{t.strikeKicker}</p><h2>{t.strikeTitle}</h2><p>{t.strikeText}</p><a href="https://banana-navy.ai/lab/use-cases/voicebotnavy-strikeit/" className="button dark">{t.strikeLink} ↗</a><div className="partner-logos"><img src="/assets/strikeit/defense.png" alt="Belgian Defence"/><img src="/assets/strikeit/rhid.png" alt="RHID"/><img src="/assets/strikeit/cybercommand.png" alt="Cyber Command"/></div></div><div className="pillars">{t.pillars.map(([title,text])=><div key={title}><h3>{title}</h3><p>{text}</p></div>)}</div></section>
+    <section className="strike" id="strike-it"><div className="strike-image"><img src={asset("/assets/strikeit/kickoff.webp")} alt="STRIKE IT 2026 kickoff at A6K"/><img className="strike-logo" src={asset("/assets/strikeit/logo.webp")} alt="STRIKE IT"/></div><div className="strike-copy"><p className="eyebrow">{t.strikeKicker}</p><h2>{t.strikeTitle}</h2><p>{t.strikeText}</p><a href="https://banana-navy.ai/lab/use-cases/voicebotnavy-strikeit/" className="button dark">{t.strikeLink} ↗</a><div className="partner-logos"><img src={asset("/assets/strikeit/defense.png")} alt="Belgian Defence"/><img src={asset("/assets/strikeit/rhid.png")} alt="RHID"/><img src={asset("/assets/strikeit/cybercommand.png")} alt="Cyber Command"/></div></div><div className="pillars">{t.pillars.map(([title,text])=><div key={title}><h3>{title}</h3><p>{text}</p></div>)}</div></section>
 
-    <section className="integration"><div className="section-head"><p className="eyebrow">{t.integrateKicker}</p><h2>{t.integrateTitle}</h2><p>{t.integrateText}</p></div><div className="orbit" aria-label="Connected systems"><div className="core"><img src="/favicon.png" alt=""/><span>VOICE AI</span></div>{["CRM","ERP","TEL","RAG","API","BI"].map((x,i)=><span key={x} style={{"--i":i} as React.CSSProperties}>{x}</span>)}</div><div className="guards">{t.guards.map((x,i)=><div key={x}><b>0{i+1}</b><span>{x}</span><i>✓</i></div>)}</div></section>
+    <section className="integration"><div className="section-head"><p className="eyebrow">{t.integrateKicker}</p><h2>{t.integrateTitle}</h2><p>{t.integrateText}</p></div><div className="orbit" aria-label="Connected systems"><div className="core"><img src={asset("/favicon.png")} alt=""/><span>VOICE AI</span></div>{["CRM","ERP","TEL","RAG","API","BI"].map((x,i)=><span key={x} style={{"--i":i} as React.CSSProperties}>{x}</span>)}</div><div className="guards">{t.guards.map((x,i)=><div key={x}><b>0{i+1}</b><span>{x}</span><i>✓</i></div>)}</div></section>
 
-    <section className="team section" id="team"><div className="section-head"><p className="eyebrow">{t.teamKicker}</p><h2>{t.teamTitle}</h2><p>{t.teamText}</p></div><div className="team-grid">{t.team.map(([name,role],i)=><article key={name}><img src={["/assets/team/marc-antoine.webp","/assets/team/omer.webp","/assets/team/svetlana.webp"][i]} alt={`${name}, Banana Navy`}/><div><h3>{name}</h3><p>{role}</p></div></article>)}</div></section>
+    <section className="team section" id="team"><div className="section-head"><p className="eyebrow">{t.teamKicker}</p><h2>{t.teamTitle}</h2><p>{t.teamText}</p></div><div className="team-grid">{t.team.map(([name,role],i)=><article key={name}><img src={asset(["/assets/team/marc-antoine.webp","/assets/team/omer.webp","/assets/team/svetlana.webp"][i])} alt={`${name}, Banana Navy`}/><div><h3>{name}</h3><p>{role}</p></div></article>)}</div></section>
 
-    <section className="clients"><p>SELECTED EXPERIENCE</p><div>{["belfius-logo.png","sncb-logo.png","ores-logo.png","defense-logo.png","pharmalys-logo.png","exype-logo.png"].map(x=><img key={x} src={`/assets/clients/${x}`} alt="Client reference"/>)}</div></section>
+    <section className="clients"><p>SELECTED EXPERIENCE</p><div>{["belfius-logo.png","sncb-logo.png","ores-logo.png","defense-logo.png","pharmalys-logo.png","exype-logo.png"].map(x=><img key={x} src={asset(`/assets/clients/${x}`)} alt="Client reference"/>)}</div></section>
     <section className="contact"><p className="eyebrow">{t.contactKicker}</p><h2>{t.contactTitle}</h2><p>{t.contactText}</p><a href="mailto:marc@banana-navy.com" className="button blue">{t.contactButton} ↗</a></section>
-    <footer><img src="/assets/banana-navy-logo.png" alt="Banana Navy"/><p>{t.footer}</p><div><a href="mailto:marc@banana-navy.com">marc@banana-navy.com</a><a href="tel:+32495277044">+32 495 27 70 44</a><a href="https://www.linkedin.com/company/banananavy/">LinkedIn ↗</a></div><small>© {new Date().getFullYear()} Banana Navy</small></footer>
+    <footer><img src={asset("/assets/banana-navy-logo.png")} alt="Banana Navy"/><p>{t.footer}</p><div><a href="mailto:marc@banana-navy.com">marc@banana-navy.com</a><a href="tel:+32495277044">+32 495 27 70 44</a><a href="https://www.linkedin.com/company/banananavy/">LinkedIn ↗</a></div><small>© {new Date().getFullYear()} Banana Navy</small></footer>
     {cookieVisible && <div className="cookie"><span>We use essential cookies only.</span><button onClick={()=>setCookieVisible(false)}>OK</button></div>}
   </main>;
 }
