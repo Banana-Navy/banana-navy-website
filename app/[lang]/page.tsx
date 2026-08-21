@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import NavySite from "../navy-site";
+import { pageUrl } from "../site-config";
 
 const languages = ["fr", "nl", "en"] as const;
 type Lang = (typeof languages)[number];
@@ -24,7 +25,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   return {
     title: titles[lang] ?? titles.fr,
     description: descriptions[lang] ?? descriptions.fr,
-    alternates: { canonical: `/${lang}`, languages: { "fr-BE": "/fr", "nl-BE": "/nl", en: "/en", "x-default": "/fr" } },
+    alternates: { canonical: pageUrl(`/${lang}`), languages: { "fr-BE": pageUrl("/fr"), "nl-BE": pageUrl("/nl"), en: pageUrl("/en"), "x-default": pageUrl("/fr") } },
+    openGraph: { title: titles[lang] ?? titles.fr, description: descriptions[lang] ?? descriptions.fr, type: "website", locale: lang === "fr" ? "fr_BE" : lang === "nl" ? "nl_BE" : "en_GB" },
   };
 }
 

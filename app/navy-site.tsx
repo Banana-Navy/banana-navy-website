@@ -54,7 +54,7 @@ export default function NavySite({ lang }: { lang: Lang }) {
     <header className="topbar">
       <Link href={`/${lang}`} className="wordmark" aria-label="Banana Navy home">BANANA <i>NAVY</i></Link>
       <nav id="main-nav" className={menuOpen ? "nav open" : "nav"} aria-label="Main navigation">
-        <Link href={`/${lang}/expertise`}>{t.nav[0]}</Link><a href="#strike-it">{t.nav[1]}</a><Link href={`/${lang}/approach`}>{t.nav[2]}</Link><Link href={`/${lang}/lab`}>{t.nav[3]}</Link><Link href={`/${lang}/team`}>{t.nav[4]}</Link>
+        <Link href={`/${lang}/expertise`}>{t.nav[0]}</Link><a href="#strike-it" onClick={()=>setMenuOpen(false)}>{t.nav[1]}</a><Link href={`/${lang}/approach`}>{t.nav[2]}</Link><Link href={`/${lang}/lab`}>{t.nav[3]}</Link><Link href={`/${lang}/team`}>{t.nav[4]}</Link>
       </nav>
       <div className="header-actions"><div className="langs">{(["fr","nl","en"] as Lang[]).map(l => <Link className={l===lang?"active":""} aria-current={l===lang?"page":undefined} key={l} href={`/${l}`}>{l.toUpperCase()}</Link>)}</div><a className="pill" href="mailto:marc@banana-navy.com">{t.cta} ↗</a><button className="menu" onClick={()=>setMenuOpen(!menuOpen)} aria-label="Menu" aria-expanded={menuOpen} aria-controls="main-nav">{menuOpen?"×":"≡"}</button></div>
     </header>
@@ -65,7 +65,7 @@ export default function NavySite({ lang }: { lang: Lang }) {
       <div className="proofline"><span>{t.proof}</span><div>{t.stats.map(([n,l])=><div key={l}><strong>{n}</strong><small>{l}</small></div>)}</div></div>
     </section>
 
-    <section className="section services" id="expertise"><div className="section-head"><p className="eyebrow">{t.servicesKicker}</p><h2>{t.servicesTitle}</h2><p>{t.servicesIntro}</p></div><div className="service-list">{t.services.map(([n,title,text],i)=><article key={n}><div className="service-icon"><img src={asset(`/icons/flood/${["phone.png","tasks.png","smartphone.png","sync.png"][i]}`)} alt=""/><span>{n}</span></div><h3>{title}</h3><p>{text}</p><b>↗</b></article>)}</div></section>
+    <section className="section services" id="expertise"><div className="section-head"><p className="eyebrow">{t.servicesKicker}</p><h2>{t.servicesTitle}</h2><p>{t.servicesIntro}</p></div><div className="service-list">{t.services.map(([n,title,text],i)=><Link className="service-row" href={`/${lang}/${["voice-agents","agentic-systems","create","automations"][i]}`} key={n}><div className="service-icon"><img src={asset(`/icons/flood/${["phone.png","tasks.png","smartphone.png","sync.png"][i]}`)} alt=""/><span>{n}</span></div><h3>{title}</h3><p>{text}</p><b>↗</b></Link>)}</div></section>
 
     <section className="custom" id="method"><div className="placeholder"><div className="wave-mini"><i/><i/><i/><i/><i/><i/><i/></div><span>{t.missing}</span><h3>{t.missingTitle}</h3><p>{t.missingText}</p><code>VISUAL 01 · 16:10 · 2400 × 1500 px</code></div><div className="custom-copy"><p className="eyebrow">{t.customKicker}</p><h2>{t.customTitle}</h2><p>{t.customText}</p><a href="mailto:marc@banana-navy.com" className="text-link">{t.cta} ↗</a></div></section>
 

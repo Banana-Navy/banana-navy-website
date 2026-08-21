@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   basePath: pagesBase,
   assetPrefix: pagesBase || undefined,
+  experimental: { globalNotFound: true },
 };
 
 export default nextConfig;

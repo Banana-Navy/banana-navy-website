@@ -27,6 +27,7 @@ jobs:
       - run: npm run build
         env:
           NEXT_PUBLIC_BASE_PATH: /banana-navy-website
+          NEXT_PUBLIC_SITE_URL: https://banana-navy.github.io/banana-navy-website
       - uses: actions/configure-pages@v5
         with:
           enablement: true

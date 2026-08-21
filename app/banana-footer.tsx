@@ -59,6 +59,6 @@ export default function BananaFooter({ lang }: { lang: Lang }) {
       <div><p className="footer-kicker">{t.partners}</p><div className="footer-partner-logos"><img src={asset("/assets/partners/defence.png")} alt="Belgian Defence"/><img src={asset("/assets/partners/crest-royal.png")} alt="Belgian Defence crest"/><img src={asset("/assets/partners/strike-it.png")} alt="STRIKE IT"/><img src={asset("/assets/partners/cyberforce.png")} alt="Cyber Force"/></div></div>
       <p>{t.partnerText}</p>
     </div>
-    <div className="footer-legal"><span>© {new Date().getFullYear()} Banana Navy</span><span>Banana Navy · AI systems studio · Charleroi, Belgium</span><div><a href="https://banana-navy.ai/mentions-legales/">{t.legal}</a><a href="https://banana-navy.ai/politique-confidentialite/">{t.privacy}</a></div></div>
+    <div className="footer-legal"><span>© {new Date().getFullYear()} Banana Navy</span><span>Banana Navy · AI systems studio · Charleroi, Belgium</span><div><Link href={`/${lang}/faq`}>FAQ</Link><Link href={`/${lang}/legal`}>{t.legal}</Link><Link href={`/${lang}/privacy`}>{t.privacy}</Link></div></div>
   </footer>;
 }
